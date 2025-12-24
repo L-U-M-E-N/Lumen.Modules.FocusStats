@@ -47,12 +47,12 @@ namespace Lumen.Modules.FocusStats.Business.Implementations {
                     }
 
                     var newStart = activities[j].StartTime.AddSeconds(activities[j].SecondsDuration);
-
+                    var timeDifference = activities[j + 1].StartTime - newStart;
                     if (
                         activities[j].Device == activities[j + 1].Device &&
                         activities[j].Name == activities[j + 1].Name &&
                         activities[j].AppOrExe == activities[j + 1].AppOrExe &&
-                        newStart.CompareTo(activities[j].StartTime) == 0
+                        timeDifference < TimeSpan.FromSeconds(1)
                     ) {
 
                         activities[j].SecondsDuration += activities[j + 1].SecondsDuration;
