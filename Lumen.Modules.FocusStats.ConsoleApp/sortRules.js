@@ -11,11 +11,9 @@ function sortEntries(rules) {
 	
 	keys.sort((a, b) => {
 		if (driveRule.test(a) && !driveRule.test(b)) {
-			console.log(a, b);
 			return 1;
 		}
 		if (driveRule.test(b) && !driveRule.test(a)) {
-			console.log(a, b);
 			return -1;
 		}
 
