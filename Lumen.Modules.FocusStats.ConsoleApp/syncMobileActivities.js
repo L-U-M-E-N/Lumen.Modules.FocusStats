@@ -23,7 +23,7 @@ async function sendData() {
 	}
 	activities = [];
 }
-for (const entry of history.buckets['aw-watcher-android-test'].events) {
+for (const entry of history.buckets['aw-watcher-android'].events) {
 	const startTime = (new Date(entry.timestamp)).toISOString();
 	if (activities.find((x) => x.startTime === startTime)) {
 		continue;
