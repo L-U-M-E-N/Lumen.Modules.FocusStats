@@ -29,11 +29,12 @@ namespace Lumen.Modules.FocusStats.Business.Implementations {
             await context.SaveChangesAsync(cancellationToken);
         }
 
+        public const int pageSize = 100_000;
+
         public async Task CompressActivitiesAsync(CancellationToken cancellationToken) {
             logger.LogInformation("{Date} - Starting to compress activities ...", DateTime.UtcNow);
 
             int cursor = 0;
-            int pageSize = 100_000;
             while (true) {
                 var activities = await context.Activities.OrderBy(x => x.Device).ThenBy(x => x.StartTime).Skip(cursor).Take(pageSize).ToListAsync(cancellationToken);
                 if (activities.Count == 0) {

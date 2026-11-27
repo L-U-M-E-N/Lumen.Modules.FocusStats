@@ -29,8 +29,9 @@ namespace Lumen.Modules.FocusStats.Service {
         public static (string WindowTitle, string ExePath) GetFocusedWindowInfo<T>(ILogger<T> logger) {
             IntPtr hwnd = GetForegroundWindow();
 
-            if (hwnd == IntPtr.Zero)
+            if (hwnd == IntPtr.Zero) {
                 return (string.Empty, string.Empty);
+            }
 
             // Get window title
             int length = GetWindowTextLength(hwnd);

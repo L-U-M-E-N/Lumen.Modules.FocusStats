@@ -14,7 +14,7 @@ namespace Lumen.Modules.FocusStats.ConsoleApp {
         static void Main(string[] args) {
             Console.WriteLine($"[{DateTime.Now}] Loading settings ...");
 
-            var cleaningRulesDict = JsonSerializer.Deserialize<Dictionary<string, ParsedCleaningRule>>(File.ReadAllText("renaming_rules.json"), jsonSerializerOptions);
+            var cleaningRulesDict = JsonSerializer.Deserialize<Dictionary<string, ParsedCleaningRule>>(File.ReadAllText("renaming_rules.json"), jsonSerializerOptions)!;
             foreach (var item in cleaningRulesDict) {
                 CleaningRules.Add(new CleaningRule(item.Key, item.Value.Replacement, Enum.Parse<RuleTarget>(item.Value.Target), item.Value.Tests));
             }

@@ -1,14 +1,12 @@
 ﻿using Lumen.Modules.FocusStats.Common.Dto;
 
-using System.Net.Http.Json;
-
 namespace Lumen.Modules.FocusStats.Service;
 
 public sealed class GetActivitiesService(ILogger<GetActivitiesService> logger) {
-    public List<NewUserActivityDto> CachedActivities = [];
+    private readonly List<NewUserActivityDto> CachedActivities = [];
 
-    public static string LUMEN_API_KEY;
-    public static string LUMEN_API_URL;
+    public static string LUMEN_API_KEY = null!;
+    public static string LUMEN_API_URL = null!;
 
     public void GetActivity() {
         var (title, exe) = ForegroundWindowInfo.GetFocusedWindowInfo(logger);
